@@ -36,8 +36,8 @@ const validateTextLength = async (req, res, next) => {
     try {
         const { text } = req.body;
 
-        if (text && text.length < 10) {
-            return res.status(400).json({ error: 'Text must be at least 10 characters long' });
+        if (text && (text.length < 10 || text.length > 256)) {
+            return res.status(400).json({ error: 'Text must be between 10 and 256 characters long' });
         }
 
         next();
